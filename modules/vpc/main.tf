@@ -15,6 +15,14 @@ module "vpc" {
     private_subnet_suffix = "private"
     public_subnet_suffix = "public"
 
+    # Extra subnet tags, e.g. for EKS load balancer subnet discovery
+    public_subnet_tags = var.public_subnet_tags
+    private_subnet_tags = var.private_subnet_tags
+
+
+    # Instances in public subnets get a public IP (required for EKS nodes in public subnets)
+    map_public_ip_on_launch = var.map_public_ip_on_launch
+
 
     #RDS public subnet
     create_database_subnet_group = true
